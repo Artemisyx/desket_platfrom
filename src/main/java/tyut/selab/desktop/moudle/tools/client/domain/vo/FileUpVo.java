@@ -9,4 +9,25 @@ public class FileUpVo {
     private String upFilePath;
     private Date upTime;
     private String upIp;
+
+    public String getUpIp() {
+        return upIp;
+    }
+    public String getUpFilePath() {
+        return upFilePath;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    @Override
+    public String toString() {
+        return "FileUpVo{" +
+                "user=" + user +
+                ", upFilePath='" + upFilePath + '\'' +
+                ", upTime=" + upTime +
+                ", upIp='" + upIp + '\'' +
+                '}';
+    }
 }
