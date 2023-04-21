@@ -1,19 +1,23 @@
 package tyut.selab.desktop.moudle.tools.client.service;
 
+import tyut.selab.desktop.moudle.student.domain.User;
+import tyut.selab.desktop.moudle.tools.client.domain.FileUp;
 import tyut.selab.desktop.moudle.tools.client.domain.vo.FileUpVo;
 
+import java.util.List;
+
 public interface IFileUpService {
-<<<<<<< Updated upstream
+
     int fileDown(FileUpVo fileUpVo)                                                                                                                                                                                                                                                                                ;
 
     int fileUpLoading(FileUpVo fileUpVo);
-=======
-    int fileDown(FileUp fileUp,String localFLiePath);
+
+    int fileDown(FileUp fileUp, String localFLiePath);
 
     int fileUpLoading(FileUp fileUp,String localFilePath);
 
     List<FileUp> queryAllFileUpInfo() ;
 
     List<FileUp> queryFileUpByUser(User user) ;
->>>>>>> Stashed changes
+
 }

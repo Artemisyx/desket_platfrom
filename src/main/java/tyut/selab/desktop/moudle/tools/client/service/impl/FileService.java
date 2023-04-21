@@ -3,20 +3,21 @@ package tyut.selab.desktop.moudle.tools.client.service.impl;
 import tyut.selab.desktop.moudle.student.userdao.IUserDao;
 import tyut.selab.desktop.moudle.student.userdao.impl.UserDao;
 import tyut.selab.desktop.moudle.tools.client.dao.IUpFileDao;
-<<<<<<< Updated upstream
+
 import tyut.selab.desktop.moudle.tools.client.domain.vo.FileUpVo;
-=======
+
 import tyut.selab.desktop.moudle.tools.client.dao.impl.UpFileDao;
 import tyut.selab.desktop.moudle.tools.client.domain.FileUp;//
 // import tyut.selab.desktop.moudle.tools.client.domain.vo.FileUpVo;
->>>>>>> Stashed changes
+
 import tyut.selab.desktop.moudle.tools.client.service.IFileUpService;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-<<<<<<< Updated upstream
+import java.util.List;
+
 
 public class FileService implements IFileUpService {
 
@@ -28,7 +29,7 @@ public class FileService implements IFileUpService {
 
     public static void main(String[] args) {
         FileService fileService = new FileService();
-        fileService.userDao.queryUserByAccount()
+        fileService.userDao.queryUserByAccount();
     }
 
     private final int port = 45617;
@@ -42,8 +43,8 @@ public class FileService implements IFileUpService {
     public int fileDown(FileUpVo fileUpVo) {
         String name ="Defaulted";     //第一部分为：姓名 （本以为从Student 的Dao层 获取）()
         String week ="第一周";         //第二部分为周数，判断周数需要自己写（当然，不是这一部分的内容）
-=======
-import java.util.List;
+
+
 
 public class FileService implements IFileUpService {
     private IUserDao userDao;  //是学生类的一个接口  包含11个方法
@@ -78,7 +79,7 @@ public class FileService implements IFileUpService {
         name = getName();
         week = getWeek();
 
->>>>>>> Stashed changes
+
         //Socket连接
         Socket Socket;
         //从本地输出到Socket
@@ -92,17 +93,17 @@ public class FileService implements IFileUpService {
         FileOutputStream fileOutputStream;
 
         try {
-<<<<<<< Updated upstream
+
             sendByte = new byte[39];            //7+6
-            fileByteArray(sendByte, name.getBytes(StandardCharsets.UTF_8), week.getBytes(StandardCharsets.UTF_8), 21);//// 调用方法 实现固定模式的byte数组 让剩下的部分被0填充
+        //    fileByteArray(sendByte, name.getBytes(StandardCharsets.UTF_8), week.getBytes(StandardCharsets.UTF_8), 21);//// 调用方法 实现固定模式的byte数组 让剩下的部分被0填充
             //建立套接字
             Socket = new Socket("localhost",port);
-=======
+
             sendByte = new byte[39];            // 姓名7(21字节)+ 周数6(18字节)
-            fileByteArray(sendByte, name.getBytes(StandardCharsets.UTF_8), week.getBytes(StandardCharsets.UTF_8), 21);//// 调用方法 实现固定模式的byte数组 让剩下的部分被0填充
+        //    fileByteArray(sendByte, name.getBytes(StandardCharsets.UTF_8), week.getBytes(StandardCharsets.UTF_8), 21);//// 调用方法 实现固定模式的byte数组 让剩下的部分被0填充
             //建立套接字
             Socket = new Socket("localhost",port);  //192.168.1.134
->>>>>>> Stashed changes
+
 
             //输出数据部分
             outStream = Socket.getOutputStream();
@@ -114,11 +115,11 @@ public class FileService implements IFileUpService {
             //输入部分
             inputStream =Socket.getInputStream();
             dataInputStream = new DataInputStream(inputStream);
-<<<<<<< Updated upstream
+
             fileOutputStream= new FileOutputStream(localPath);
-=======
+
             fileOutputStream= new FileOutputStream(localFLiePath);
->>>>>>> Stashed changes
+
             byte[] data = new byte[5*1024];
             while (true){
                 int len = dataInputStream.read(data);
@@ -135,39 +136,36 @@ public class FileService implements IFileUpService {
         }catch (Exception e){
             e.printStackTrace();
         }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         return 0;
     }
 
     @Override
-<<<<<<< Updated upstream
+
     public int fileUpLoading(FileUpVo fileUpVo)  {
-=======
+
     public int fileUpLoading(FileUp fileUp, String localFilePath) {  //FileUp
->>>>>>> Stashed changes
+
         int length;
         //套接字
         Socket socket;
         //输出流
         OutputStream outputStream;
         DataOutputStream dataOutputStream;
-<<<<<<< Updated upstream
+
       //  PrintWriter printWriter;
-=======
+
         //  PrintWriter printWriter;
->>>>>>> Stashed changes
+
         //从文件输入
         FileInputStream fileInputStream;
         //输出流的第一部分内容         ---->服务端路径 (从UI 或 数据库获取 ->调用fileUpTo???)
 
-<<<<<<< Updated upstream
+
         String path = fileUpVo.getUpFilePath();        //服务端路径 //查询之后获取服务端路径
-=======
+
         String path = fileUp.getUpFilePath();        //服务端路径 //查询之后获取服务端路径
->>>>>>> Stashed changes
+
         int pathNum = 80;
         String serverPath ="Defaulted";
         byte[] serverPathByte;
@@ -179,11 +177,10 @@ public class FileService implements IFileUpService {
         try {
             socket = new Socket("localhost",port);
             outputStream = socket.getOutputStream();
-<<<<<<< Updated upstream
+
        //     printWriter = new PrintWriter(outputStream);
-=======
+
             //     printWriter = new PrintWriter(outputStream);
->>>>>>> Stashed changes
 
 
             System.out.println("连接到服务器成功");
@@ -199,7 +196,7 @@ public class FileService implements IFileUpService {
                 dataOutputStream.write(sendBytes,0,length);
             }
         }catch (Exception e){
-<<<<<<< Updated upstream
+
           e.printStackTrace();
         }
 
@@ -213,7 +210,6 @@ public class FileService implements IFileUpService {
      * @param data2    填充数组二
      * @param length1  第一部分的长度
      */
-
     private static byte[] fileByteArray(byte[] endByte,byte[] data1, byte[] data2, int length1) {
 
         fileByteArrayAct(endByte, data1, data2, length1);
@@ -221,7 +217,6 @@ public class FileService implements IFileUpService {
         return endByte;
     }
 
-=======
             e.printStackTrace();
         }
         return 0;
@@ -238,32 +233,27 @@ public class FileService implements IFileUpService {
         upFileDao = new UpFileDao();
         return upFileDao.queryFileUpByUser(user);
     }
-    /**
-     *
-     * @param endByte  待填充数组
-     * @param data1    填充数组一
-     * @param data2    填充数组二
-     * @param length1  第一部分的长度
-     */
-    private static byte[] fileByteArray(byte[] endByte,byte[] data1, byte[] data2, int length1) {
-
-        fileByteArrayAct(endByte, data1, data2, length1);
-        // System.out.println(Arrays.toString(endByte));
-        return endByte;
-    }
->>>>>>> Stashed changes
-    public static void fileByteArrayAct(byte[] endByte, byte[] data1, byte[] data2, int length1) {
-        byte a = 0;
-        System.arraycopy(data1, 0, endByte, 0, data1.length);
-        Arrays.fill(endByte,data1.length,length1-1,a);
-        System.arraycopy(data2,0,endByte,length1,data2.length);
-        Arrays.fill(endByte,length1+data2.length,endByte.length,a);
-    }
+//    /**
+//     *
+//     * @param endByte  待填充数组
+//     * @param data1    填充数组一
+//     * @param data2    填充数组二
+//     * @param length1  第一部分的长度
+//     */
+//    private static byte[] fileByteArray(byte[] endByte,byte[] data1, byte[] data2, int length1) {
+//
+//        fileByteArrayAct(endByte, data1, data2, length1);
+//        // System.out.println(Arrays.toString(endByte));
+//        return endByte;
+//    }
+//
+//    public static void fileByteArrayAct(byte[] endByte, byte[] data1, byte[] data2, int length1) {
+//        byte a = 0;
+//        System.arraycopy(data1, 0, endByte, 0, data1.length);
+//        Arrays.fill(endByte,data1.length,length1-1,a);
+//        System.arraycopy(data2,0,endByte,length1,data2.length);
+//        Arrays.fill(endByte,length1+data2.length,endByte.length,a);
+//    }
 
 }
 
-//            printWriter.write("123"+"\r\n");
-//            printWriter.flush();
-//            printWriter.write("456+"+"\r\n");
-//            printWriter.flush();
-//            System.out.println("准备发送");
